@@ -14,15 +14,15 @@
 
 #### 1v1 评课
 
-![](./1v1.png)
+![](./img/1v1.png)
 
 
 #### 随机选择错题
-![](./error.jpg)
+![](./img/error.jpg)
 
 
 #### 汇总评分
-![](./summary.png)
+![](./img/summary.png)
 
 
 > 本辅助插件是写给我女朋友使用的
