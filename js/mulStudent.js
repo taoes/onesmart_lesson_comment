@@ -1,12 +1,12 @@
 // 当前网页的链接地址
-let href = window.location.href;
+let hrefw = window.location.href;
 
 
 // 一对三评论
 let one2three = "Lessons/AddLessonAppraise1V3.aspx";
 
 
-if (href.indexOf(one2three) !== -1) {
+if (hrefw.indexOf(one2three) !== -1) {
     one2threePK();
 }
 

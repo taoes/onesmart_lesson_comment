@@ -5,7 +5,7 @@ let href = window.location.href;
 // 一对一评论
 let pingKeHref = "/LessonWorks/ErrorCollection/CollectError.aspx";
 let localTag = null;
-let charArray = ['A', 'B', 'C', 'D'];
+let charArray = ['0','A', 'B', 'C', 'D'];
 let reasonArray = ['语法问题', '词汇欠缺', '阅读细节', '阅读推断', '策略失当', '记忆问题'];
 let lastSaveSubmitBtn, entryTestBtn, lessonExampleTestBtn, lessonTestBtn;
 
@@ -148,6 +148,8 @@ function handleChooseQuestion(className) {
 
         let question = questionList[index];
 
+        question.style.border = '5px red solid'
+
         $(question).find(".wrong input").prop("checked", true);
 
         // 设定原因
@@ -158,8 +160,10 @@ function handleChooseQuestion(className) {
         let studentAnswer = $(question).find("select.studentAnswer");
         if (studentAnswer.length > 0) {
             // 随机生成学生答案
-            let randomAnswer = charArray[randomRange(0, $(studentAnswer).find("option").length)];
-            $(studentAnswer).find("option:contains('" + randomAnswer.trim() + "')").prop("selected", true);
+            let optionLength = $(studentAnswer).find("option").length;
+            let scope = randomRange(1, optionLength);
+            let randomAnswer = charArray[scope];
+            $(studentAnswer).find("option:contains('" + randomAnswer + "')").prop("selected", true);
         }
 
     }
