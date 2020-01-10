@@ -1,24 +1,38 @@
-# ele-demo
+# 精锐评课辅助插件
 
-## Project setup
-```
-yarn install
-```
+### 安装步骤
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
++ 下载安装包 `https://github.com/taoes/onesmart_lesson_comment/archive/master.zip`
++ 解压安装包到指定位置，如D盘
 
-### Compiles and minifies for production
-```
-yarn build
-```
++ 在Chrome浏览器地址栏目输入 ： `chrome://extensions/`
++ 开启右上角的开发者模式
++ 点击左侧 `加载已解压的拓展程序`即可
 
-### Lints and fixes files
-```
-yarn lint
-```
+## 插件安装教程
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
++ 
++ 在Chrome浏览器中的地址栏输入 `chrome://extensions/` 打开Chrome的拓展程序界面
++ 在右上角开启开发者模式
++ 点击左侧加载已解压的拓展程序，选择之前解压好的文件夹目录即可
++ Chrome 的任务栏中出现 插件图标表示已经启用成功  
+
+
+## 界面截图
+
+#### 1v1 评课
+
+![](./img/1v1.png)
+
+
+#### 随机选择错题
+![](./img/error.jpg)
+
+
+#### 汇总评分
+![](./img/summary.png)
+
+
+> 本辅助插件是写给我女朋友使用的
+
+
