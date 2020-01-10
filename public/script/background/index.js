@@ -1,7 +1,10 @@
 // 监听Chrome的消息
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-    if (message === 'congfig') {
-        const config = localStorage.getItem('config');
+    if (message === 'Config') {
+        let config = localStorage.getItem('config');
+        if (!config) {
+            config = '{}'
+        }
         sendResponse(config);
     }
     return true;

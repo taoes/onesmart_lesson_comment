@@ -1,6 +1,5 @@
 // 当前网页的链接地址
-let href = window.location.href;
-
+let href_1_1 = window.location.href;
 
 // 一对一评论
 let pingKeHref = "/LessonWorks/ErrorCollection/CollectError.aspx";
@@ -8,16 +7,15 @@ let localTag = null;
 let charArray = ['0', 'A', 'B', 'C', 'D'];
 let reasonArray = ['语法问题', '词汇欠缺', '阅读细节', '阅读推断', '策略失当', '记忆问题'];
 let lastSaveSubmitBtn, entryTestBtn, lessonExampleTestBtn, lessonTestBtn;
-let configs = undefined;
 
 
 /** chrome 插件特有语法,获取配置完成之后才开始进行操作 */
 chrome.runtime.sendMessage('Config', function (response) {
-    this.configs = JSON.parse(response);
-    console.log(`获取到配置信息:${parse}`);
-    if (href.indexOf(pingKeHref) !== -1) {
+    let config = JSON.parse(response);
+    console.log(`1V1  获取到配置信息:${config}`);
+    if (href_1_1.indexOf(pingKeHref) !== -1) {
         handleWeb();
-        setEventHandle()
+        setEventHandle(config)
     }
 });
 
@@ -59,28 +57,28 @@ function handleWeb() {
 /**
  * 为按钮添加事件
  */
-function setEventHandle() {
+function setEventHandle(config) {
     $("#lastSaveSubmitBtn").click(function () {
-        handleChooseQuestion('JKDiv_0')
+        handleChooseQuestion(config, 'JKDiv_0')
 
     });
 
     $("#entryTestBtn").click(function () {
-        handleChooseQuestion('JKDiv_1')
+        handleChooseQuestion(config, 'JKDiv_1')
     });
 
     $("#lessonExampleTestBtn").click(function () {
-        handleChooseQuestion('JKDiv_2')
+        handleChooseQuestion(config, 'JKDiv_2')
     });
 
     $("#lessonTestBtn").click(function () {
-        handleChooseQuestion('JKDiv_3');
+        handleChooseQuestion(config, 'JKDiv_3');
     });
 
     let saveAppraiseBtn = $("#saveAppraiseBtn");
     saveAppraiseBtn.after("<a id=\"saveAppraiseBtn2\" href=\"javascript:void(0);\" style=\"margin-left:10px;\">随机填充</a>")
     $("#saveAppraiseBtn2").click(function () {
-        handleStateQuestion(1);
+        handleStateQuestion(config, 1);
     });
 
 
@@ -88,7 +86,7 @@ function setEventHandle() {
         let saveAppraiseBtn = $("#saveAppraiseBtn");
         saveAppraiseBtn.after("<a id=\"saveAppraiseBtn2\" href=\"javascript:void(0);\" style=\"margin-left:10px;\">随机填充</a>")
         $("#saveAppraiseBtn2").click(function () {
-            handleStateQuestion(1);
+            handleStateQuestion(config, 1);
         });
     })
 }
@@ -98,18 +96,32 @@ function setEventHandle() {
  * 处理评级控件
  * @param className
  */
-function handleStateQuestion(className) {
+function handleStateQuestion(config, className) {
+    let stateKey = {'知道': 1, '理解': 2, '掌握': 3, '运用': 4};
+    let starKey = ['one-stars', 'two-stars', 'three-stars', 'four-stars', 'five-stars'];
+
+    let comment;
+    let classState;
+    let stars;
+    if (!config) {
+        stars = 5;
+        classState = '理解';
+        comment = '建议做完练习后对错题进行总结归纳；课堂上比较积极，能够及时提出自己疑惑并在引导下积极思考解决问题。就是检查了前面两次课的内容，学生有部分遗忘的情况，希望及时复习已学知识点';
+    } else {
+        stars = starKey[config.defaultRate - 1];
+        comment = config.comment;
+        classState = stateKey[config.status];
+    }
+
+
     $("div.description").html('5分');
-    let fiveStars = $("a.five-stars");
+    let fiveStars = $("a." + stars);
     for (let i = 0; i < fiveStars.length; i++) {
         fiveStars[i].click();
     }
-    // 文本
-    let comment = '建议做完练习后对错题进行总结归纳；课堂上比较积极，能够及时提出自己疑惑并在引导下积极思考解决问题。就是检查了前面两次课的内容，学生有部分遗忘的情况，希望及时复习已学知识点';
 
-
-    $("#scores2").click();
-    $("textarea.remarktt").val(comment);
+    $("#scores" + classState).click();
+    $(".remarktt").val(comment);
 
 }
 
@@ -118,7 +130,7 @@ function handleStateQuestion(className) {
  * 处理选择题目
  * @param className
  */
-function handleChooseQuestion(className) {
+function handleChooseQuestion(config, className) {
 
     let questionList = $(`div#${className} div.listitem`);
     let error_count = localStorage.getItem('error_count');

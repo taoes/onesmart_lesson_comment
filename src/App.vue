@@ -32,7 +32,7 @@
 
 <style>
     #app {
-        width: 500px;
+        width: 350px;
         display: flex;
         flex-direction: column;
     }

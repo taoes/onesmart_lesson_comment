@@ -21,7 +21,7 @@
   },
   "background": {
     "scripts": [
-      "script/background/listenMessage.js"
+      "script/background/index.js"
     ]
   },
   "content_scripts": [
