@@ -5,15 +5,21 @@ let href = window.location.href;
 // 一对一评论
 let pingKeHref = "/LessonWorks/ErrorCollection/CollectError.aspx";
 let localTag = null;
-let charArray = ['0','A', 'B', 'C', 'D'];
+let charArray = ['0', 'A', 'B', 'C', 'D'];
 let reasonArray = ['语法问题', '词汇欠缺', '阅读细节', '阅读推断', '策略失当', '记忆问题'];
 let lastSaveSubmitBtn, entryTestBtn, lessonExampleTestBtn, lessonTestBtn;
+let configs = undefined;
 
 
-if (href.indexOf(pingKeHref) !== -1) {
-    handleWeb();
-    setEventHandle()
-}
+/** chrome 插件特有语法,获取配置完成之后才开始进行操作 */
+chrome.runtime.sendMessage('Config', function (response) {
+    this.configs = JSON.parse(response);
+    console.log(`获取到配置信息:${parse}`);
+    if (href.indexOf(pingKeHref) !== -1) {
+        handleWeb();
+        setEventHandle()
+    }
+});
 
 
 /**
@@ -43,9 +49,6 @@ function handleWeb() {
     if (isShow(lessonTestBtn)) {
         lessonTestBtn.after("<a id=\"lessonTestBtn\" class=\"btn-save\" style=\"bottom:135px\">随机选题</a>")
     }
-
-
-    // 课堂评价
 
 
     // 打印随机错题定位标签

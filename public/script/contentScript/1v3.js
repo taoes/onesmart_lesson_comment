@@ -1,14 +1,15 @@
 // 当前网页的链接地址
 let hrefw = window.location.href;
-
-
-// 一对三评论
 let one2three = "Lessons/AddLessonAppraise1V3.aspx";
 
+chrome.runtime.sendMessage('Config', function (response) {
+    let parse = JSON.parse(response);
+    console.log(`获取到配置信息:${parse}`)
 
-if (hrefw.indexOf(one2three) !== -1) {
-    one2threePK();
-}
+    if (hrefw.indexOf(one2three) !== -1) {
+        one2threePK();
+    }
+});
 
 
 /** 1对3评课 */
