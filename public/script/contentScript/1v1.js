@@ -133,7 +133,7 @@ function handleStateQuestion(config, className) {
 function handleChooseQuestion(config, className) {
 
     let questionList = $(`div#${className} div.listitem`);
-    let error_count = config.maxWrongQuestion;
+    let error_count = Math.min(questionList / 2, config.maxWrongQuestion);
     if (error_count === undefined || error_count === null) {
         error_count = 3
     }
