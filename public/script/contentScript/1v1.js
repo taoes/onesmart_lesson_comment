@@ -59,20 +59,20 @@ function handleWeb() {
  */
 function setEventHandle(config) {
     $("#lastSaveSubmitBtn").click(function () {
-        handleChooseQuestion(config, 'JKDiv_0')
+        handleChooseQuestion(config, 0, lastSaveSubmitBtn)
 
     });
 
     $("#entryTestBtn").click(function () {
-        handleChooseQuestion(config, 'JKDiv_1')
+        handleChooseQuestion(config, 1, entryTestBtn)
     });
 
     $("#lessonExampleTestBtn").click(function () {
-        handleChooseQuestion(config, 'JKDiv_2')
+        handleChooseQuestion(config, 2, lessonExampleTestBtn)
     });
 
     $("#lessonTestBtn").click(function () {
-        handleChooseQuestion(config, 'JKDiv_3');
+        handleChooseQuestion(config, 3, lessonTestBtn);
     });
 
     let saveAppraiseBtn = $("#saveAppraiseBtn");
@@ -130,12 +130,17 @@ function handleStateQuestion(config, className) {
  * 处理选择题目
  * @param className
  */
-function handleChooseQuestion(config, className) {
+function handleChooseQuestion(config, className, submitButton) {
 
-    let questionList = $(`div#${className} div.listitem`);
-    let error_count = Math.min(questionList / 2, config.maxWrongQuestion);
-    if (error_count === undefined || error_count === null) {
-        error_count = 3
+    let questionList = $(`div#JKDiv_${className} div.listitem`);
+    let error_count;
+    if (!config) {
+        error_count = Math.min(questionList / 2, config.maxWrongQuestion);
+        if (error_count === undefined || error_count === null) {
+            error_count = 3
+        }
+    } else {
+        error_count = 3;
     }
 
     // 生成错题序号
@@ -180,9 +185,16 @@ function handleChooseQuestion(config, className) {
             let randomAnswer = charArray[scope];
             $(studentAnswer).find("option:contains('" + randomAnswer + "')").prop("selected", true);
         }
-
     }
-
+    let autoSubmit = false;
+    if (config !== undefined) {
+        autoSubmit = config.submit;
+    }
+    console.debug(`当前是否自动提交:${autoSubmit}`);
+    if (autoSubmit && submitButton.length > 0) {
+        console.debug(`触发自动提交设置`);
+        submitButton[0].click();
+    }
 }
 
 
