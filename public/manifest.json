@@ -1,8 +1,8 @@
 {
-  "name": "精锐评课辅助1.1",
+  "name": "精锐评课辅助",
   "manifest_version": 2,
-  "version": "0.0.1",
-  "description": "精锐教务",
+  "version": "1.0.2",
+  "description": "精锐教育评课辅助插件",
   "browser_action": {
     "default_icon": "./img/favicon.png",
     "default_title": "精锐教育评课辅助插件",
