@@ -1,6 +1,7 @@
 <template>
     <div class='hello'>
         <el-divider>
+            <i class="el-icon-s-tools"></i>
             系统配置
         </el-divider>
         <div class='layout'>
@@ -20,6 +21,7 @@
 
 
         <el-divider>
+            <i class="el-icon-s-cooperation"></i>
             填充配置
         </el-divider>
 
@@ -43,7 +45,7 @@
 
         <div class='layout'>
             <span class="label">最多错题:</span>
-            <el-input-number v-model='config.maxWrongQuestion' size='mini' :min='0' :max='10'/>
+            <el-input-number v-model='config.maxWrongQuestion' size='mini' :min='1' :max='10'/>
 
         </div>
 
@@ -82,12 +84,13 @@
 
 
         <el-divider>
+            <i class="el-icon-success"></i>
             保存设置
         </el-divider>
 
         <div class="layout center">
             <el-button type="primary" size="small" @click="saveConfig">保存</el-button>
-            <el-button type="primary" size="small">恢复默认</el-button>
+            <el-button type="primary" size="small" @click="resetDefaultConfig">恢复默认</el-button>
             <el-button type="primary" size="small" @click="closePage">关闭</el-button>
         </div>
 
@@ -108,8 +111,8 @@
             comment: "",
             maxWrongQuestion: 3,
             status: "掌握",
-            reasonList: [],
-            answerList: [],
+            reasonList: ["语法问题", "词汇欠缺", "阅读细节", "阅读推断"],
+            answerList: ["A", "B", "C", "D"],
             defaultRate: 5,
         };
 
@@ -133,11 +136,36 @@
             window.close();
         }
 
+
+        private resetDefaultConfig() {
+            const
+                config = {
+                    submit: true,
+                    skipIndex: false,
+                    statistics: true,
+                    comment: "",
+                    maxWrongQuestion: 3,
+                    status: "掌握",
+                    reasonList: ["语法问题", "词汇欠缺", "阅读细节", "阅读推断"],
+                    answerList: ["A", "B", "C", "D"],
+                    defaultRate: 5,
+                };
+            localStorage.setItem("config", JSON.stringify(config));
+            this.config = config;
+            this.$message({
+                message: "配置已经成功恢复",
+                center: true,
+                type: "success",
+            });
+        }
+
         // 生命周期方法
         private mounted() {
             const config = localStorage.getItem("config");
             if (config) {
                 this.config = JSON.parse(config);
+            } else {
+                localStorage.setItem("config", JSON.stringify(config));
             }
         }
 
@@ -150,6 +178,7 @@
         display: flex;
         flex-direction: row;
         padding: 10px;
+        align-items: baseline;
     }
 
     .el-input-number--mini {
