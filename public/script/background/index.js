@@ -5,6 +5,7 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
         if (!config) {
             config = '{}'
         }
+        console.log("配置信息" + config);
         sendResponse(config);
     }
     return true;

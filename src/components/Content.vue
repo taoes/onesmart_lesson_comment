@@ -164,8 +164,6 @@
             const config = localStorage.getItem("config");
             if (config) {
                 this.config = JSON.parse(config);
-            } else {
-                localStorage.setItem("config", JSON.stringify(config));
             }
         }
 
