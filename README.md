@@ -4,21 +4,20 @@
 
 + 下载安装包 `https://github.com/taoes/onesmart_lesson_comment/archive/master.zip`
 + 解压安装包到指定位置，如D盘
-
++ 执行 `yarn install && yarn build` 顺利的话话编译成功，多出一个dist目录
 + 在Chrome浏览器地址栏目输入 ： `chrome://extensions/`
 + 开启右上角的开发者模式
-+ 点击左侧 `加载已解压的拓展程序`即可
++ 点击左侧 `加载已解压的拓展程序`，选择编译出来的dist目录
 
-## 插件安装教程
-
-+ 
-+ 在Chrome浏览器中的地址栏输入 `chrome://extensions/` 打开Chrome的拓展程序界面
-+ 在右上角开启开发者模式
-+ 点击左侧加载已解压的拓展程序，选择之前解压好的文件夹目录即可
-+ Chrome 的任务栏中出现 插件图标表示已经启用成功  
 
 
 ## 界面截图
+
+#### 配置界面
+![](./img/config_1.png)
+
+![](./img/config_2.png)
+
 
 #### 1v1 评课
 
