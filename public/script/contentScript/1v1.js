@@ -12,7 +12,7 @@ let lastSaveSubmitBtn, entryTestBtn, lessonExampleTestBtn, lessonTestBtn;
 /** chrome 插件特有语法,获取配置完成之后才开始进行操作 */
 chrome.runtime.sendMessage('Config', function (response) {
     let config = JSON.parse(response);
-    console.log(`1V1  获取到配置信息:${config}`);
+    console.debug(`1V1  获取到配置信息:${config}`);
     if (href_1_1.indexOf(pingKeHref) !== -1) {
         handleWeb();
         setEventHandle(config)
@@ -103,18 +103,23 @@ function handleStateQuestion(config, className) {
     let comment;
     let classState;
     let stars;
+    let fen = 5;
     if (!config) {
+        fen = 5;
         stars = 5;
         classState = '理解';
         comment = '建议做完练习后对错题进行总结归纳；课堂上比较积极，能够及时提出自己疑惑并在引导下积极思考解决问题。就是检查了前面两次课的内容，学生有部分遗忘的情况，希望及时复习已学知识点';
+        console.debug(`111->${fen}分`);
     } else {
+        fen = config.defaultRate;
         stars = starKey[config.defaultRate - 1];
         comment = config.comment;
         classState = stateKey[config.status];
+        console.debug(`222->${fen}分`);
     }
 
-
-    $("div.description").html('5分');
+    console.debug(`${fen}分`);
+    $("div .description").html(`${fen}分`);
     let fiveStars = $("a." + stars);
     for (let i = 0; i < fiveStars.length; i++) {
         fiveStars[i].click();
@@ -135,13 +140,15 @@ function handleChooseQuestion(config, className, submitButton) {
     let questionList = $(`div#JKDiv_${className} div.listitem`);
     let error_count;
     if (!config) {
-        error_count = Math.min(questionList / 2, config.maxWrongQuestion);
+        error_count = 3;
+    } else {
+        error_count = Math.min(questionList.length / 2, config.maxWrongQuestion);
         if (error_count === undefined || error_count === null) {
             error_count = 3
         }
-    } else {
-        error_count = 3;
     }
+
+    console.debug(`当前最多选择错题 ${error_count}`);
 
     // 生成错题序号
     let errorQuestionNumber = [];
@@ -153,6 +160,7 @@ function handleChooseQuestion(config, className, submitButton) {
         }
         errorQuestionNumber.push(random)
     }
+    console.debug(`错题列表：${errorQuestionNumber}`);
 
     let localTag = $("#sitemap .postion");
     $("#errorQuestionNumber").remove();
