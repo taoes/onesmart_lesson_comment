@@ -31,6 +31,7 @@
       ],
       "js": [
         "script/lib/jquery.js",
+        "script/contentScript/loginIndex.js",
         "script/contentScript/1v1.js",
         "script/contentScript/1v3.js"
       ]
