@@ -1,14 +1,14 @@
 <template>
     <div id="app">
-        <div id="header">
-            <Header></Header>
-        </div>
+
 
         <div id="content">
             <Content></Content>
         </div>
-
-
+        <div id="header">
+            <hr>
+            <Header></Header>
+        </div>
     </div>
 </template>
 
@@ -35,9 +35,7 @@
         width: 350px;
         display: flex;
         flex-direction: column;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-        padding: 20px;
-        font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+        font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
     }
 
 

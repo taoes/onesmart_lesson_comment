@@ -1,5 +1,18 @@
 <template>
     <div class='hello'>
+
+        <div id="buttonArea">
+
+            <div style="margin-top: 20px">
+                <el-button type="primary" plain @click="openWebSite('http://home2.onesmart.org/')">精锐家园(外网)</el-button>
+            </div>
+
+            <div style="margin-top: 20px">
+                <el-button type="primary" plain @click="openWebSite('http://home.onesmart.org/')">精锐家园(内网)</el-button>
+            </div>
+        </div>
+
+
         <el-divider>
             <i class="el-icon-s-tools"></i>
             系统配置
@@ -28,7 +41,7 @@
 
         <div class='layout'>
             <span class="label">默认星级：</span>
-            <el-rate v-model="config.defaultRate"></el-rate>
+            <el-rate v-model="config.defaultRate" :texts="rateText" show-text></el-rate>
         </div>
 
         <div class='layout'>
@@ -121,6 +134,7 @@
         private allStatusList: string[] = ["知道", "理解", "掌握", "运用"];
         private allReasonList: string[] = ["语法问题", "词汇欠缺", "阅读细节", "阅读推断", "策略失当", "记忆问题"];
         private allAnswerList: string[] = ["不选择", "A", "B", "C", "D"];
+        private rateText: string[] = ['1分', '2分', '3分', '4分', '5分'];
 
         private saveConfig() {
             localStorage.setItem("config", JSON.stringify(this.config));
@@ -134,6 +148,11 @@
         // 关闭窗体
         private closePage() {
             window.close();
+        }
+
+        // 打开新的页面
+        private openWebSite(url: string) {
+            window.open(url);
         }
 
 
@@ -193,5 +212,14 @@
         margin-right: 5px;
         font-size: 14px;
         font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    }
+
+
+    /*   访问连接区域*/
+
+    #buttonArea {
+        display: flex;
+        display: -webkit-flex;
+        justify-content: space-between;
     }
 </style>

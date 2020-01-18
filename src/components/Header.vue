@@ -15,10 +15,6 @@
                 源代码开放
             </el-link>
         </div>
-        <p align="center" class="emailSpan">
-            <b>Email: </b>
-             <a href="mailto:zhoutao825639@vip.qq.com">zhoutao825639@vip.qq.com</a>
-        </p>
     </div>
 </template>
 
