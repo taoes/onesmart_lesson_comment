@@ -1,0 +1,65 @@
+.myButton {
+    width: 100px;
+    margin-top: 20px;
+    height: 35px;
+    line-height: 35px;
+    border-radius: 0 !important;
+    background: #0088ee !important;
+    color: #fff;
+    font-size: 17px;
+    text-align: center;
+}
+
+.myButton:hover {
+    color: #fff;
+}
+
+
+.fixPosition {
+    position: fixed !important;
+    bottom: 140px !important;
+    right: 2px !important;
+    padding: 0 !important;
+
+    border-radius: 0 !important;
+    background: #0088EE !important;
+}
+
+.btn-save {
+    bottom: 90px !important;
+    padding: 0 !important;
+    background: #0088ee !important;
+    border-radius: 0 !important;
+}
+
+
+.hide {
+    display: none !important;
+}
+
+
+/*提示样式*/
+#errorQuestionNumber {
+    color: red;
+    font-size: 300%;
+    margin-top: 50px;
+    margin-bottom: 10px
+}
+
+#saveAppraiseBtn {
+    width: 100px !important;
+}
+
+
+.left-head ul > li.active {
+    background: #0088EE !important;
+}
+
+
+.m-40 {
+    margin-top: 60px !important;
+}
+
+.mb-40 {
+    bottom: 180px !important;
+}
